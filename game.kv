@@ -1,0 +1,65 @@
+#:kivy 1.0
+#:import window kivy.core.window
+ScreenManagement:
+    MainScreen:
+    PlayScreen:
+    HelpScreen:
+
+<Button>:
+    font_size: 17
+
+<MainScreen>:
+    name: 'main'
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: '8dp'
+        Label:
+            text: 'Python Coding Game Lesson'
+            font_size: 60
+        BoxLayout:
+            spacing: 50
+            padding: 30
+            size_hint_y: None
+            height: '100'
+            pos_hint: {'center_x': .5, 'center_y': .3}
+            size_hint: 1, .2
+            
+            Button:
+                text: 'Help'
+            Button:
+                text: 'Begin'
+                on_press:
+                    app.root.transition.direction = 'left'  
+                    app.root.current = 'play'
+
+<PlayScreen>:
+    name: 'play'
+    GridLayout:
+        cols: 2
+        spacing: '8dp'
+        BoxLayout:
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 15
+            padding: 20
+            size_hint: .3, .2
+            Label:
+                text: 'Lesson'
+                font_size: 18
+            Button:
+                text: 'Hint'
+            Button:
+                text: 'Block Editor'
+            Button:
+                text: 'Import'
+            Button:
+                text: 'Run'
+            Button:
+                text: 'Back'
+                on_press:
+                    app.root.transition.direction = 'right' 
+                    app.root.current = 'main'
+            Button:
+                text: 'Exit'
+                on_release: app.root.stop()
+
