@@ -1,12 +1,14 @@
 #:kivy 1.0
 #:import window kivy.core.window
+<Button>:
+    font_size: 17
+
 ScreenManagement:
     MainScreen:
     PlayScreen:
     HelpScreen:
 
-<Button>:
-    font_size: 17
+
 
 <MainScreen>:
     name: 'main'
@@ -46,13 +48,13 @@ ScreenManagement:
             Label:
                 text: 'Lesson'
                 font_size: 18
-            Button:
+            HintButton:
                 text: 'Hint'
-            Button:
+            BlockButton:
                 text: 'Block Editor'
-            Button:
+            ImportButton:
                 text: 'Import'
-            Button:
+            RunButton:
                 text: 'Run'
             Button:
                 text: 'Back'

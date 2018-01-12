@@ -7,19 +7,46 @@ from kivy.properties import ObjectProperty, StringProperty, NumericProperty, Boo
 from kivy.config import Config
 from kivy.uix.image import Image
 from kivy.uix.popup import Popup
-
-Window.fullscreen = True
+from kivy.uix.button import Button
 
 class MainScreen(Screen):
-    pass
+    def __init__(self, **kwargs):
+        super(MainScreen, self).__init__(**kwargs)
+        self.name = 'main_screen'
 
 class PlayScreen(Screen):
-    pass
+    def __init__(self, **kwargs):
+        super(PlayScreen, self).__init__(**kwargs)
+        self.name = 'play_screen'
 
 class HelpScreen(Screen):
-    pass
+    def __init__(self, **kwargs):
+        super(HelpScreen, self).__init__(**kwargs)
+        self.name = 'help_screen'
+
+class RunButton(Button):
+    def __init__(self, **kwargs):
+        super(RunButton, self).__init__(**kwargs)
+
+class HintButton(Button):
+    def __init__(self, **kwargs):
+        super(HintButton, self).__init__(**kwargs)
+
+
+
+class BlockButton(Button):
+    def __init__(self, **kwargs):
+        super(BlockButton, self).__init__(**kwargs)
+
+class ImportButton(Button):
+    def __init__(self, **kwargs):
+        super(ImportButton, self).__init__(**kwargs)
+
 
 class ScreenManagement(ScreenManager):
+    pass
+
+class GameWidget(Widget):
     pass
 
 class GameApp(App):
