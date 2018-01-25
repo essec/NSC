@@ -1,58 +1,101 @@
-from kivy.app import App 
-from kivy.lang import Builder
+import kivy
+
+from kivy.app import App
 from kivy.uix.screenmanager import Screen, ScreenManager
-from kivy.core.window import Window 
-from kivy.uix.widget import Widget
-from kivy.properties import ObjectProperty, StringProperty, NumericProperty, BooleanProperty, ListProperty
-from kivy.config import Config
-from kivy.uix.image import Image
-from kivy.uix.popup import Popup
 from kivy.uix.button import Button
+from kivy.uix.label import Label
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.gridlayout import GridLayout
 
-class MainScreen(Screen):
+
+class HomeScreen(Screen):
+
     def __init__(self, **kwargs):
-        super(MainScreen, self).__init__(**kwargs)
-        self.name = 'main_screen'
+        super().__init__(**kwargs)
+        self.name = 'home_screen'
+        self.add_widget(HomeLayout())
 
-class PlayScreen(Screen):
+
+class GameScreen(Screen):
+
     def __init__(self, **kwargs):
-        super(PlayScreen, self).__init__(**kwargs)
-        self.name = 'play_screen'
-
-class HelpScreen(Screen):
-    def __init__(self, **kwargs):
-        super(HelpScreen, self).__init__(**kwargs)
-        self.name = 'help_screen'
-
-class RunButton(Button):
-    def __init__(self, **kwargs):
-        super(RunButton, self).__init__(**kwargs)
-
-class HintButton(Button):
-    def __init__(self, **kwargs):
-        super(HintButton, self).__init__(**kwargs)
-
-
-
-class BlockButton(Button):
-    def __init__(self, **kwargs):
-        super(BlockButton, self).__init__(**kwargs)
-
-class ImportButton(Button):
-    def __init__(self, **kwargs):
-        super(ImportButton, self).__init__(**kwargs)
+        super().__init__(**kwargs)
+        self.name = 'game_screen'
 
 
 class ScreenManagement(ScreenManager):
-    pass
 
-class GameWidget(Widget):
-    pass
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.add_widget(HomeScreen())
+        self.add_widget(GameScreen())
+
+
+class Title(Label):
+    
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.text = 'Python Coding Game Lesson'
+        self.font_size = 50
+
+
+class BeginButton(Button):
+    
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.text = 'Begin'
+
+    def on_release(self):
+        sm.current = 'game_screen'
+
+
+class HelpButton(Button):
+    
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.text = 'Help'
+
+
+class ExitButton(Button):
+
+    def __init__(self, **kwargs):
+        super().__init(**kwargs)
+        self.text = 'Exit'
+
+class HomeLayout(BoxLayout):
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.orientation = 'vertical'
+        self.spacing = 8
+        self.add_widget(Title())
+        self.add_widget(SubHome())
+
+
+class SubHome(BoxLayout):
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.orientation = 'horizontal'
+        self.spacing = 50
+        self.padding = 30
+        self.size_hint_y = None
+        self.height = 100
+        self.size_hint = 1, .2
+        self.add_widget(BeginButton())
+        self.add_widget(HelpButton())
+
+sm = ScreenManagement()
 
 class GameApp(App):
-    title = 'Python Game'
+    title = 'Python Coding Game Lesson'
+    
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+    
     def build(self):
-        return
+        return sm 
+
 
 if __name__ == '__main__':
     GameApp().run()
